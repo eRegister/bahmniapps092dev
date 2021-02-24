@@ -537,7 +537,6 @@ angular.module('bahmni.clinical').controller('ConsultationController',
                             messagingService.showMessage('error', message);
                         });
                     }));
-                    window.location.assign(currentPath);
                     }));
                 };
 
