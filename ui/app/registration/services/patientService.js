@@ -32,6 +32,7 @@ angular.module('bahmni.registration')
         var searchHIE = function (query, identifier, nationalId, gender, addressFieldName, addressFieldValue, customAttributeValue,
                                offset, customAttributeFields, programAttributeFieldName, programAttributeFieldValue, addressSearchResultsConfig,
                                patientSearchResultsConfig, filterOnAllIdentifiers) {
+
             var config = {
                 params: {
                     q: query,
@@ -53,9 +54,11 @@ angular.module('bahmni.registration')
                 },
                 withCredentials: true
             };
+
             return patientServiceStrategy.searchHIE(config);
         };
         var searchByIdentifier = function (identifier) {
+            
             return $http.get(Bahmni.Common.Constants.bahmniSearchUrl + "/patient", {
                 method: "GET",
                 params: {
@@ -89,7 +92,9 @@ angular.module('bahmni.registration')
             });
         };
         var get = function (uuid) {
-            return patientServiceStrategy.get(uuid);   
+          
+            return patientServiceStrategy.get(uuid);
+
         };
         var create = function (patient, jumpAccepted) {
             return patientServiceStrategy.create(patient, jumpAccepted);
