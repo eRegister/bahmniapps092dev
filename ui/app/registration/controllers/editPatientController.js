@@ -57,6 +57,9 @@ angular.module('bahmni.registration')
 
             $scope.update = function () {
                 addNewRelationships();
+                $scope.patient.odooAge = $scope.patient.age.years;
+                $scope.patient.odooSex = $scope.patient.gender
+                
                 var errorMessages = Bahmni.Common.Util.ValidationUtil.validate($scope.patient, $scope.patientConfiguration.attributeTypes);
                 if (errorMessages.length > 0) {
                     errorMessages.forEach(function (errorMessage) {

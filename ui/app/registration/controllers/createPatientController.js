@@ -65,11 +65,13 @@ angular.module('bahmni.registration')
                 });
             };
 
+            // Creating Patient registration Form
             var init = function () {
                 $scope.patient = patient.create();
                 prepopulateDefaultsInFields();
                 expandSectionsWithDefaultValue();
                 $scope.patientLoaded = true;
+                
             };
 
             init();
@@ -163,6 +165,9 @@ angular.module('bahmni.registration')
 
             $scope.create = function () {
                 addNewRelationships();
+                $scope.patient.odooAge = $scope.patient.age.years;
+                $scope.patient.odooSex = $scope.patient.gender
+
                 var errorMessages = Bahmni.Common.Util.ValidationUtil.validate($scope.patient, $scope.patientConfiguration.attributeTypes);
                 if (errorMessages.length > 0) {
                     errorMessages.forEach(function (errorMessage) {
@@ -179,6 +184,7 @@ angular.module('bahmni.registration')
             };
 
             $scope.afterSave = function () {
+
                 messagingService.showMessage("info", "REGISTRATION_LABEL_SAVED");
                 $state.go("patient.edit", {
                     patientUuid: $scope.patient.uuid
